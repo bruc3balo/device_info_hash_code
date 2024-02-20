@@ -1,6 +1,6 @@
 name: device_info_hash_code
 description: Detect Device Based on H/W Info
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/bruc3balo/device_info_hash_code
 
 environment:

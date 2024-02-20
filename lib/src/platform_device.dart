@@ -141,7 +141,7 @@ class PlatformDeviceInfo with _$PlatformDeviceInfo {
       _$PlatformDeviceInfoFromJson(json);
 }
 
-Future<PlatformDeviceInfo> getDeviceInfo() async {
+Future<PlatformDeviceInfo> _getDeviceInfo() async {
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
 
   Mplatform current = Mplatform.current;
@@ -227,6 +227,12 @@ Future<PlatformDeviceInfo> getDeviceInfo() async {
       throw Exception("${current.name} not supported");
   }
 }
+
+Future<PlatformDeviceInfo> get deviceInfo async {
+  var dev = await _getDeviceInfo();
+  return dev.copyWith(infoHashCode: dev.deviceHashCode);
+}
+
 
 extension UIPlatformCode on Mplatform {
   int get code => switch (this) {
