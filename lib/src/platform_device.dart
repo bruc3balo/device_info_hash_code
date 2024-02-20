@@ -228,6 +228,11 @@ Future<PlatformDeviceInfo> getDeviceInfo() async {
   }
 }
 
+Future<PlatformDeviceInfo> get deviceInfo async {
+  var dev = await getDeviceInfo();
+  return dev.copyWith(infoHashCode: dev.deviceHashCode);
+}
+
 extension UIPlatformCode on Mplatform {
   int get code => switch (this) {
         Mplatform.android => 1,
