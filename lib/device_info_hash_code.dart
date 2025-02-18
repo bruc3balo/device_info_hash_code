@@ -1,4 +1,3 @@
 library device_info_hash_code;
 
-
-export 'src/platform_device.dart';
+export 'src/device_id.dart';
