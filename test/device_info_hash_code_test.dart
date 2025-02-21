@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 Future<void> main() async {
   test('obtain device id ', () async {
-    String id = await getStableDeviceId();
+    Sha256 id = await getStableDeviceId();
     expect(id, isNotNull);
-    expect(id, isNotEmpty);
+    expect(id.hash, isNotEmpty);
   });
 }

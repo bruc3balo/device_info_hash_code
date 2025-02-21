@@ -3,7 +3,7 @@ import 'package:crypto/crypto.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'dart:io';
 
-Future<String> getStableDeviceId() async {
+Future<Sha256> getStableDeviceId() async {
   final deviceInfo = DeviceInfoPlugin();
   late String rawId;
 
@@ -31,5 +31,15 @@ Future<String> getStableDeviceId() async {
   // Hash the ID to make it a fixed-length unique identifier
   var bytes = utf8.encode(rawId);
   var digest = sha256.convert(bytes);
-  return digest.toString();
+  return Sha256(digest.toString());
+}
+
+
+/// Hash of a sha256 with validation
+class Sha256 {
+  final String hash;
+
+  Sha256(this.hash) : assert(hash.length == 64);
+
+  String get short => hash.substring(0, 6);
 }
